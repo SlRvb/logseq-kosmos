@@ -113,3 +113,11 @@ nav.cp__menubar-repos .ui__dropdown-trigger a {
 }
 
 iframe[id^=youtube-player] { height: 400px; }
+
+
+.marker-switch.block-marker:is(
+  .DOING, .LATER
+) { font-weight: bold; }
+
+.marker-switch.block-marker.DOING { color: #338fff; }
+.marker-switch.block-marker.LATER { color: #3b6a91; }
