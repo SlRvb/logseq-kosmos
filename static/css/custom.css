@@ -6,12 +6,81 @@
 
 
 
+html:is([data-theme=dark],[data-theme=light])[data-color=logseq] { 
+  --background: 210 27% 6%;
+  --foreground: 216 16% 12%;
+  --secondary: 200 10% 10%;
+  --accent: 221 16% 38%;
+  
+  --border: 222 19% 31%;
+  --primary: 221 16% 38%;
+  
+  --ls-whiteboard-button-background-selected: hsl(var(--accent));
+}
 
+.tldraw.whiteboard,
+.logseq-tldraw {
+  --ls-button-background-hsl: 221 16% 38%;
+  --ls-whiteboard-quick-links-background: hsl(221, 18%, 24%);
+  --ls-whiteboard-quick-links-background-hover: hsl(221 16% 38%);
 
+  /* --ls-secondary-background-color: var(--note); */
 
+  --shadow-medium: 3px 3px 0 var(--outline);
+}
+.tl-menu,
+.whiteboard-page-title-root {
+  --tw-shadow: 
+  4px 4px 0 var(--outline),
+  0 0 0 2px var(--outline);
+}
 
+.whiteboard-page-title,
+.tl-toolbar,
+button.tl-select-input-trigger,
+.tl-popover-trigger-button,
+.tl-button,
+.tl-menu,
+.tl-quick-search-options,
 
+.whiteboard-page-title-root,
+.whiteboard-page-refs-count,
+.tl-logseq-portal-header,
+.tl-logseq-cp-container,
+.tl-logseq-cp-container-bg,
+.single-block>:is(.block-content-wrapper,.editor-wrapper),
+.tl-positioned,
+.tl-positioned-div,
+.tl-positioned-svg,
+.tl-quick-links,
+.tl-quick-links-row:first-child,
+.tl-selected
+{ border-radius: 0; }
+.tl-positioned-svg rect {
+  rx: 0 !important;
+  ry: 0 !important;
+}
+.tl-logseq-portal-container[data-portal-selected=true] { filter: unset; }
+.tl-logseq-portal-container[data-portal-selected=true] .tl-logseq-cp-container-bg {
+  box-shadow: 0 0 0 3px var(--accent2);
+}
+.tl-logseq-cp-container-bg {
+  /* background-color: var(--note) !important; */
+  box-shadow: 
+    4px 4px 0 var(--outline),
+    0 0 0 2px var(--outline);
+}
+.tl-logseq-portal-header:not(:hover),
+.tl-logseq-portal-header:not(:hover) .page-ref,
+.whiteboard-page-title:hover,
+.tl-toggle-input[data-state=on] 
+{ color: var(--text-dl) !important; }
 
+.whiteboard-page-refs-count.open, 
+.whiteboard-page-refs-count:hover {
+  filter: unset;
+  background-color: var(--td);
+}
 
 
 
@@ -26,6 +95,8 @@
   --ls-scrollbar-width: 0;
 
   --color-level-1: var(--td);
+  --radius: 0;
+  --ls-right-ridebar-color: transparent;
 
   --ls-heading-font-family: "Harding";
   --ls-tag-text: var(--soft-text);
@@ -37,7 +108,7 @@
   /* Temp Style Fixes */
   --ls-modal-panel-color: var(--note);
   --ls-secondary-text-color: var(--text);
-  --color-level-4: #080e1b;
+  /* --color-level-4: #080e1b; */
 }
 /* .light-theme { --text: black; } */
 .is-win32 { --ls-page-text-size: 17px; }
@@ -61,12 +132,15 @@ iframe[id^=youtube-player] {
 
 
 
+
+
+
 /* TODO/Tasks */
 /* Marker */
 .marker-switch.block-marker:is(
   .DOING, .LATER
 ) { font-weight: bold; }
-
+.marker-switch.block-marker.TODO  { color: var(--soft-text); }
 .marker-switch.block-marker.DOING { color: #338fff; }
 .marker-switch.block-marker.LATER { color: #3b6a91; }
 .light-theme div[id^="school"] [data-refs-self*="done"]:not(:hover) { opacity: .2; }
@@ -96,6 +170,9 @@ iframe[id^=youtube-player] {
 .sidebar-item.content.color-level {
     background-color: var(--note);
     box-shadow: 3px 3px 0 var(--outline);
+}
+.sidebar-item.collapsed.collapsed.item-type-block .sidebar-item-header {
+  background-color: var(--outer-bar);
 }
 
 
@@ -415,6 +492,8 @@ a.tag[data-ref$="buy"] {
 
 
 
+/* Dashboard */
+a.tag[data-ref*="style/dashboard"] { display: none; }
 .ls-block[data-refs-self*="style/dashboard"] > .block-children-container > .block-children {
   display: flex;
   flex-wrap: wrap;
@@ -427,30 +506,42 @@ a.tag[data-ref$="buy"] {
   min-width: 250px;
   margin-left: unset;
 }
+#right-sidebar-container .ls-block[data-refs-self*="style/dashboard"] > .block-children-container { margin-left: 0; }
+#right-sidebar-container .ls-block[data-refs-self*="style/dashboard"] > .block-children-container > .block-children { border-left: 0; }
+.ls-block[data-refs-self*="style/dashboard"] > .block-main-container .block-content { border-bottom: 1px solid var(--hr); }
 
-.ls-block[data-refs-self*="style/minimalism"] a[data-ref*="minimalism"] 
+.ls-block[data-refs-self*="style/dashboard"] > .block-main-container > .block-control-wrap .bullet-link-wrap { display: none; }
+.ls-block[data-refs-self*="style/dashboard"] > .block-main-container > .block-control-wrap { padding-right: 0; }
+
+
+
+
+
+.ls-block[data-refs-self*="style/query/minimalism"] a[data-ref*="minimalism"] 
 { display: none; height: 0; }
 
-.ls-block[data-refs-self*="style/minimalism"] .custom-query table { margin-top: 0; }
-.ls-block[data-refs-self*="style/minimalism"] .query-table table :is(th, td) 
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query table { margin-top: 0; }
+.ls-block[data-refs-self*="style/query/minimalism"] .query-table table :is(th, td) 
 { padding: 2px 5px; }
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) table tr td:is(:first-child, :last-child) { padding-left: 0; }
-.ls-block[data-refs-self*="style/minimalism"] .query-table table td div { margin: 0; }
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query:not(:hover) table tr td:is(:first-child, :last-child),
+.ls-block[data-refs-self*="style/query/minimalism/no-hover"] .custom-query table tr td:is(:first-child, :last-child) 
+{ padding-left: 0; }
+.ls-block[data-refs-self*="style/query/minimalism"] .query-table table td div { margin: 0; }
 
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) .th,
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) .cp__query-builder,
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) .results-count,
-.ls-block[data-refs-self*="style/minimalism"] .custom-query .ui__icon + div 
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query:not(:hover) :is(.th, .cp__query-builder, .results-count),
+.ls-block[data-refs-self*="style/query/minimalism/no-hover"] .custom-query :is(.th, .cp__query-builder, .results-count),
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query .ui__icon + div 
 { display: none; }
 
-.ls-block[data-refs-self*="style/minimalism"] .custom-query .ui__icon svg 
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query .ui__icon svg 
 { width: 16px; }
 
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) thead th
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query:not(:hover) thead th,
+.ls-block[data-refs-self*="style/query/minimalism/no-hover"] .custom-query.custom-query thead th
 /* ,
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) .cp__query-builder
-.ls-block[data-refs-self*="style/minimalism"] .query-table thead:not(:hover) th
-.ls-block[data-refs-self*="style/minimalism"] .custom-query .cp__query-builder:not(:hover) :is(.query-builder-clause, .clauses-group)  */
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query:not(:hover) .cp__query-builder
+.ls-block[data-refs-self*="style/query/minimalism"] .query-table thead:not(:hover) th
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query .cp__query-builder:not(:hover) :is(.query-builder-clause, .clauses-group)  */
 {
   opacity: 0;
   font-size: 0;
@@ -458,16 +549,20 @@ a.tag[data-ref$="buy"] {
   width: 0;
   display: none;
 }
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) .query-table tr:nth-child(2n) { background-color: unset; }
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query:not(:hover) .query-table tr,
+.ls-block[data-refs-self*="style/query/minimalism/no-hover"] .custom-query .query-table tr { background-color: unset; }
 
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) .query-table th {  border-bottom: unset; }
-.ls-block[data-refs-self*="style/minimalism"] .custom-query:not(:hover) .query-table table { margin-bottom: 7px; }
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query:not(:hover) .query-table th {  border-bottom: unset; }
+.ls-block[data-refs-self*="style/query/minimalism/no-hover"] .custom-query .query-table table,
+.ls-block[data-refs-self*="style/query/minimalism"] .custom-query:not(:hover) .query-table table { margin-bottom: 7px; }
 
 
 .cp__right-sidebar .dsl-query { margin-left: -20px; }
 /* .query-table table td { min-width: 3ch; max-width: none; } */
-.ls-block[data-refs-self*="style/query/auto"] a[data-ref*="style/query/auto"]  { display: none; }
-.ls-block[data-refs-self*="style/query/auto"] .query-table table { width: auto; }
+
+
+.ls-block[data-refs-self*="style/query/width/auto"] a[data-ref*="style/query/width/auto"] { display: none; }
+.ls-block[data-refs-self*="style/query/width/auto"] .query-table table { width: auto; }
 
 
 
@@ -646,8 +741,8 @@ html:not(.is-mobile) main:not(.ls-right-sidebar-open) #main-container { margin-r
 
 
 .dark-theme {
-  --note: #1a1e24;
-  --outer-bar: #0b0f13;
+  /* --note: #1a1e24;
+  --outer-bar: #0b0f13; */
   /*
   --outer-bar: var(--code-bg);
   --note: #171b21; 
@@ -811,4 +906,66 @@ html:not(.is-mobile) .cp__header { height: 3rem; }
 .logseq-block-calendar .calendar-day-rec .dot-task-undone::after 
 { color: hotpink; }
 
+
+
+
+/* Transfer */
 .block-ref { border-bottom: 0; }
+
+.sidebar-item-header .breadcrumb.block-parents a { color: var(--text); }
+
+
+
+
+/* Fanfic Styling */
+.light-theme div[data-page-tags*="fanfic"] {
+  --ls-heading-color: #900;
+  --text: black;
+}
+.dark-theme div[data-page-tags*="fanfic"] {
+  /* --ls-heading-color: #da3838; */
+  --ls-heading-color: #c14343;
+}
+
+div[data-page-tags*="fanfic"] {
+  /* --ls-heading-font-family: 'Georgia', 'Atkinson Hyperlegible' ,'serif'; */
+  --ls-primary-text-color: var(--text);
+  --ls-secondary-text-color: var(--text);
+  --ls-document-text-color: var(--text);
+  color: var(--ls-document-text-color);
+  
+  --ls-anchor-link-text-color: var(--ls-heading-color);
+  /* --accent2-lite: var(--ls-heading-color);
+  --ls-link-ref-text-color: var(--accent2-lite); */
+}
+
+div[data-page-tags*="fanfic"] h1 {
+  color: var(--ls-heading-color);
+}
+
+div[data-page-tags*="fanfic"] blockquote {
+  border-top: 1px solid var(--text);
+  border-bottom: 1px solid var(--text);
+  border-left: 0;
+  background-color: transparent;
+
+  padding: 10px 25px 10px 20px;
+  text-align: justify;
+  word-spacing: -0.05em;
+}
+div[data-page-tags*="fanfic"]  a.tag:not(
+  [data-ref="Q" i], [data-ref="Question" i],
+  [data-ref="R" i], [data-ref="Research" i],
+  [data-ref="P" i], [data-ref="Pro" i],
+  [data-ref="C" i], [data-ref="Con" i],
+  [data-ref="i" i], [data-ref="idea" i],
+  [data-ref="B" i], [data-ref="Brainstorm" i],
+  [data-ref="D" i], [data-ref="Dialogue" i],
+  [data-ref="A" i], [data-ref="Answer" i],
+  [data-ref="Plot" i],
+  [data-ref="Quote" i],
+  [data-ref="Transferred" i]
+) {
+  border-bottom: 1px dotted var(--text);
+  border-radius: 0;
+}
