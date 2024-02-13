@@ -674,6 +674,7 @@ html:not(.is-mobile) .cp__sidebar-left-layout.is-open+#main-content-container
 { margin: 0 5px 10px 0px; } 
 */
 
+
 .left-sidebar-inner {
   background-color: var(--outer-bar);
   border-right: 1px solid var(--outer-bar);
@@ -708,18 +709,38 @@ html:not(.is-mobile) .cp__sidebar-left-layout.is-open+#main-content-container
   text-overflow: unset;
 }
 
-.cp__right-sidebar,
+#head > div,
+.cp__right-sidebar.cp__right-sidebar,
 .cp__sidebar-main-layout,
+.cp__right-sidebar .sidebar-item-list,
 #left-container { 
   background-color: var(--outer-bar);
   --ls-secondary-background-color: var(--outer-bar);
 }
+.sidebar-item > div > div,
 #main-content-container { background-color: var(--ls-primary-background-color); }
 
-html:not(.is-mobile) #main-container { margin-bottom: 8px; }
-html:not(.is-mobile) #main-container:not(.is-left-sidebar-open) { margin-left: 8px; }
-html:not(.is-mobile) .sidebar-item-list { margin-right: 8px; }
-html:not(.is-mobile) main:not(.ls-right-sidebar-open) #main-container { margin-right: 4px; }
+html:not(.is-iphone) #main-container { margin-bottom: 8px; }
+html:not(.is-iphone) #main-container:not(.is-left-sidebar-open) { margin-left: 8px; }
+html:not(.is-iphone) .sidebar-item-list { margin-right: 8px; }
+html:not(.is-iphone) main:not(.ls-right-sidebar-open) #main-container { margin-right: 4px; }
+.is-native-ipad .sidebar-item-list { padding-left: 8px; }
+
+.is-native-ipad #head > div,
+.is-native-ipad .cp__right-sidebar-topbar { 
+  height: 3rem; 
+  align-items: center; 
+  align-content: center;
+  padding-bottom: 22px;
+  margin-top: 5px;
+}
+/* .is-native-ipad .sidebar-item-list { margin-top: 0px; } */
+
+.sidebar-item .item-actions button { 
+  background-color: transparent; 
+  box-shadow: unset; 
+  border: none;
+}
 
 /* Page/Block Properties */
 .page-properties, .block-properties { 
