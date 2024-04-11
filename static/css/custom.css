@@ -1,22 +1,79 @@
 @import url('https://raw.githack.com/SlRvb/logseq--ITS-Theme/main/custom.css');
 @import url('https://raw.githack.com/SlRvb/logseq--ITS-Theme/main/Alt-Colors/SlRvb-Grey.css');
+
 @import url('https://raw.githack.com/SlRvb/logseq--ITS-Theme/main/Snippets/encoded-fonts.css');
 @import url('https://raw.githack.com/SlRvb/logseq--ITS-Theme/main/Snippets/alt-tags.css');
 @import url('https://raw.githack.com/SlRvb/logseq--ITS-Theme/main/Snippets/hidden-root-bullet-on-zoom.css');
 
-
-
-html:is([data-theme=dark],[data-theme=light])[data-color=logseq] { 
-  --background: 210 27% 6%;
-  --foreground: 216 16% 12%;
-  --secondary: 200 10% 10%;
-  --accent: 221 16% 38%;
+html .dark-theme.dark-theme,
+html[data-theme=dark][data-theme=dark][data-color=logseq],
+.dark-theme.dark-theme .logseq-tldraw, 
+.dark-theme.dark-theme .whiteboard
+{
+  --background: 216 18% 11%; /*hsl(210 27% 6%)*/
+  --foreground: 210 40% 98%; /*hsl(216 16% 12%)*/
+  --secondary: 210 27% 6%; /*hsl(210 27% 6%)*/
+  --popover: var(--background);
+  --accent: 221, 18%, 24%; /*hsl(221, 18%, 24%)*/
+  --accent-foreground: 209, 47%, 64%; 
   
-  --border: 222 19% 31%;
-  --primary: 221 16% 38%;
-  
-  --ls-whiteboard-button-background-selected: hsl(var(--accent));
+  --border: 210, 14%, 20%; /*hsl(222 19% 31%)*/
+  --primary: 221 16% 38%; /*hsl(221 16% 38%)*/
+  --card: 221, 18%, 24%;
 }
+html .light-theme.light-theme,
+html[data-theme=light][data-color=logseq],
+.light-theme.light-theme .logseq-tldraw, 
+.light-theme.light-theme .whiteboard
+{
+  --background: 214 100% 99%;
+  --foreground: 220, 79%, 96%;
+  --secondary: 220, 79%, 96%;
+  --accent: 216, 31%, 76%;
+  --accent-foreground: 221 16% 38%;
+  --popover: var(--background);
+  
+  --border: 216, 32%, 88%;
+  --primary: 221 16% 38%;
+  --card: 221, 18%, 24%;
+}
+body,
+html :is(.dark-theme.dark-theme, .light-theme),
+html:is([data-theme=dark],[data-theme=light])[data-color=logseq],
+.logseq-tldraw, 
+.whiteboard 
+{ 
+
+  --ls-primary-background-color: hsl(var(--background));
+  --ls-secondary-background-color: hsl(var(--secondary));
+  --ls-quaternary-background-color: hsl(var(--border));
+  --ls-tertiary-background-color: hsl(var(--secondary));
+  --ls-border-color: hsl(var(--border));
+  --ls-secondary-border-color: hsl(var(--border));
+
+  --ls-header-button-hover: hsl(var(--accent));
+  /* --ls-bullet-closed-background: var(--highlight); */
+  --ls-block-bullet-color: hsl(var(--primary));
+  --ls-guideline-color: hsl(var(--border));
+  --ls-page-checkbox-color: hsl(var(--background));
+  --ls-page-checkbox-border-color: hsl(var(--border));
+  --ls-page-checkbox-checked-color: hsl(var(--accent));
+
+  --ls-scrollbar-foreground-color: hsl(var(--primary));
+  --ls-scrollbar-background-color: hsl(var(--accent));
+  --ls-link-text-color: hsl(var(--accent-foreground));
+  --ls-link-ref-text-color: hsl(var(--accent-foreground));
+  --ls-page-properties-background-color: hsl(var(--secondary));
+
+  --ls-whiteboard-button-background-selected: hsl(var(--accent));
+  --logseq-whiteboard-toolbar-background: hsl(var(--secondary));
+  --tl-background: hsl(var(--background));
+  --tl-grid: hsl(var(--border));
+
+
+  --lines: hsl(var(--border));
+}
+
 
 .tldraw.whiteboard,
 .logseq-tldraw {
@@ -24,7 +81,9 @@ html:is([data-theme=dark],[data-theme=light])[data-color=logseq] {
   --ls-whiteboard-quick-links-background: hsl(221, 18%, 24%);
   --ls-whiteboard-quick-links-background-hover: hsl(221 16% 38%);
 
-  /* --ls-secondary-background-color: var(--note); */
+  --ls-whiteboard-button-background-selected: var(--accent);
+
+  --ls-secondary-background-color: var(--note);
 
   --shadow-medium: 3px 3px 0 var(--outline);
 }
@@ -84,7 +143,13 @@ button.tl-select-input-trigger,
 
 
 
-
+.menu-link.menu-link { 
+  border-radius: var(--radius); 
+  margin: 0;
+}
+.menu-links-wrapper {
+  padding: .25rem;
+}
 
 
 
@@ -99,23 +164,29 @@ button.tl-select-input-trigger,
   --ls-right-ridebar-color: transparent;
 
   --ls-heading-font-family: "Harding";
-  --ls-tag-text: var(--soft-text);
-  --ls-anchor-link-text-color:  var(--soft-text);
+  --ls-tag-text: var(--soft-text, hsl(var(--accent-foreground)));
+  --ls-anchor-link-text-color: var(--soft-text, hsl(var(--accent-foreground)));
   
   --ph-highlight-color-blue: #245194;
   --ph-highlight-color-green: #577e57;
   
+  
   /* Temp Style Fixes */
-  --ls-modal-panel-color: var(--note);
-  --ls-secondary-text-color: var(--text);
+  /* --ls-modal-panel-color: var(--note, hsl(var(--background)));
+  --ls-secondary-text-color: var(--text); */
   /* --color-level-4: #080e1b; */
 }
-/* .light-theme { --text: black; } */
 .is-win32 { --ls-page-text-size: 17px; }
-.is-mobile { --ls-page-text-size: 14px; }
+.is-mobile { --ls-page-text-size: 14px; font-size: 14px; }
 
 .is-native-iphone iframe[id^=youtube-player] { height: 200px; }
 .is-native-ipad iframe[id^=youtube-player] { height: 500px; }
+a[href="#/page/A"] { 
+  background-color: var(--ls-highlight-color-red); 
+  color: var(--text-dl);
+  opacity: 1;
+  padding: 0 5px;
+}
 
 /* .inline:has(> iframe[id^=youtube-player]) {
   position: relative;
@@ -137,9 +208,7 @@ iframe[id^=youtube-player] {
 
 /* TODO/Tasks */
 /* Marker */
-.marker-switch.block-marker:is(
-  .DOING, .LATER
-) { font-weight: bold; }
+.marker-switch.block-marker:is( .DOING, .LATER ) { font-weight: bold; }
 .marker-switch.block-marker.TODO  { color: var(--soft-text); }
 .marker-switch.block-marker.DOING { color: #338fff; }
 .marker-switch.block-marker.LATER { color: #3b6a91; }
@@ -290,14 +359,31 @@ html[style*="banner"]:not([style*="📅"]) .sidebar-item.content {
   padding-bottom: 20px;
 } */
 
+
+/* Todo Master */
 .todo-master-progress-bar {
   font-family: var(--ls-default-font);
   letter-spacing: 1px;
+  display: flex !important;
+  flex: 1 1 auto;
+
+  --ls-tertiary-background-color: var(--outer-bar);
 }
 
-
-
-
+.todo-master-progress-bar__label { 
+  display: block;
+  width: unset !important; 
+  white-space: pre-wrap;
+  word-break: keep-all;
+}
+.todo-master-progress-bar__label:not(:hover) .todo-master-progress-bar__fraction-label { display: none; }
+.todo-master-progress-bar__bars {
+  max-width: 240px;
+  min-width: 100px;
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 0 2px var(--text);
+}
 
 
 /* Tags */
@@ -517,7 +603,7 @@ a.tag[data-ref*="style/dashboard"] { display: none; }
 
 
 
-.ls-block[data-refs-self*="style/query/minimalism"] a[data-ref*="minimalism"] 
+.ls-block[data-refs-self*="style/query/"] a[data-ref*="query"] 
 { display: none; height: 0; }
 
 .ls-block[data-refs-self*="style/query/minimalism"] .custom-query table { margin-top: 0; }
@@ -564,6 +650,9 @@ a.tag[data-ref*="style/dashboard"] { display: none; }
 .ls-block[data-refs-self*="style/query/width/auto"] a[data-ref*="style/query/width/auto"] { display: none; }
 .ls-block[data-refs-self*="style/query/width/auto"] .query-table table { width: auto; }
 
+.ls-block[data-refs-self*="style/query/root"] .custom-query-results .ls-block > .block-children-container { display: none; }
+.ls-block[data-refs-self*="style/query/root"] .custom-query-results .ls-block[haschild=true] .bullet-container { transform: rotate(90deg); }
+.ls-block[data-refs-self*="style/query/root"] .custom-query-results .ls-block[haschild=true] .bullet-link-wrap:not(:hover) { background-color: var(--ls-block-bullet-border-color); }
 
 
 a.tag[data-ref^="style/bullet/"] { display: none; }
@@ -676,11 +765,11 @@ html:not(.is-mobile) .cp__sidebar-left-layout.is-open+#main-content-container
 
 
 .left-sidebar-inner {
-  background-color: var(--outer-bar);
-  border-right: 1px solid var(--outer-bar);
+  background-color: var(--outer-bar, hsl(var(--secondary)));
+  border-right: 1px solid var(--outer-bar, hsl(var(--secondary)));
 }
 .left-sidebar-inner .nav-content-item .bd {
-  background-color: var(--note);
+  background-color: var(--note, hsl(var(--background)));
   background-color: transparent;
   margin-bottom: 10px;
   /* border-bottom: 1px solid var(--table); */
@@ -709,21 +798,22 @@ html:not(.is-mobile) .cp__sidebar-left-layout.is-open+#main-content-container
   text-overflow: unset;
 }
 
+#head,
 #head > div,
 .cp__right-sidebar.cp__right-sidebar,
 .cp__sidebar-main-layout,
 .cp__right-sidebar .sidebar-item-list,
 #left-container { 
-  background-color: var(--outer-bar);
-  --ls-secondary-background-color: var(--outer-bar);
+  background-color: var(--outer-bar, hsl(var(--secondary)));
+  --ls-secondary-background-color: var(--outer-bar, hsl(var(--secondary)));
 }
 .sidebar-item > div > div,
-#main-content-container { background-color: var(--ls-primary-background-color); }
+#main-content-container { background-color: var(--ls-primary-background-color, hsl(var(--primary))); }
 
-html:not(.is-iphone) #main-container { margin-bottom: 8px; }
-html:not(.is-iphone) #main-container:not(.is-left-sidebar-open) { margin-left: 8px; }
-html:not(.is-iphone) .sidebar-item-list { margin-right: 8px; }
-html:not(.is-iphone) main:not(.ls-right-sidebar-open) #main-container { margin-right: 4px; }
+html:not(.is-native-iphone) #main-container { margin-bottom: 8px; }
+html:not(.is-native-iphone) #main-container:not(.is-left-sidebar-open) { margin-left: 8px; }
+html:not(.is-native-iphone) .sidebar-item-list { margin-right: 8px; }
+html:not(.is-native-iphone) main:not(.ls-right-sidebar-open) #main-container { margin-right: 4px; }
 .is-native-ipad .sidebar-item-list { padding-left: 8px; }
 
 .is-native-ipad #head > div,
@@ -744,9 +834,9 @@ html:not(.is-iphone) main:not(.ls-right-sidebar-open) #main-container { margin-r
 
 /* Page/Block Properties */
 .page-properties, .block-properties { 
-	background-color: var(--td);
+	background-color: var(--td, hsl(var(--secondary)));
 	padding: 10px 15px;
-	border: 1px solid var(--ls-secondary-background-color);
+	border: 1px solid var(--ls-secondary-background-color, hsl(var(--secondary)));
 	border-radius: 0;
   font-size: 13px;
   --ls-secondary-text-color: var(--soft-text);
@@ -758,7 +848,7 @@ html:not(.is-iphone) main:not(.ls-right-sidebar-open) #main-container { margin-r
 
 
 /* .references-blocks .color-level { border-width: 2px; } */
-.custom-query .color-level { border: 2px solid var(--table); }
+.custom-query .color-level { border: 2px solid var(--table, hsl(var(--border))); }
 
 
 .dark-theme {
